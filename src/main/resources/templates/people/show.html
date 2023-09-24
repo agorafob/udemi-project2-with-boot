@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+
+<h2>Here is a person</h2>
+
+<p th:text="${person.getName()}+','+${person.getYear()}">VALUE</p>
+
+<div th:unless="${person.getBooks().isEmpty()}">
+    <p>Books:</p>
+            <div th:each="book:${person.getBooks()}">
+
+                <div>
+                    <p th:text="${book.getName()}+','+${book.getAuthor()}+','+${book.getYear()}"
+                    th:style="${book.isOverdue()}?'color:red':'color:black'"></p>
+                </div>
+
+            </div>
+
+</div>
+
+<div th:if="${person.getBooks().isEmpty()}">
+    <p>Person has no books</p>
+</div>
+
+<br>
+<hr>
+<a th:href="@{/people/{person_id}/edit(person_id=${person.getPerson_id()})}">Edit</a>
+<br><br>
+<form th:method="DELETE" th:action="@{/people/{person_id}(person_id=${person.getPerson_id()})}">
+    <input type="submit" value="Delete">
+</form>
+<br>
+<a href="/people">Back</a>
+</body>
+</html>

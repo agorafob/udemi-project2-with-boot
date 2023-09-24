@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+</head>
+<body>
+
+<h2>Here are all books in your library:</h2>
+
+<div th:each="book:${books}">
+    <a th:href="@{/books/{book_id}(book_id=${book.getBook_id()})}"
+       th:text="${book.getName()}+','+${book.getAuthor()}+','+${book.getYear()}">VALUE</a>
+</div>
+<br>
+<hr>
+
+<a href="/books/new">Add new book</a>
+<br>
+<a href="/books/search">Find book</a>
+<br>
+<a href="/">Main page</a>
+
+
+</body>
+</html>
